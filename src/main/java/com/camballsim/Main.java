@@ -78,7 +78,7 @@ public class Main extends Application {
 				if(circle.getCenterX() + circle.getRadius() < widthX - 1 && movingRight) {
 					movingLeft = false;
 					movingRight = true;
-					pixelX += deltaX; 
+					pixelX += deltaX;
 				}
 				else {
 					movingLeft = true;
