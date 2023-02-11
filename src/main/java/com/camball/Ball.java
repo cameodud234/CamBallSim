@@ -1,10 +1,17 @@
 package com.camball;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.physics.Velocity;
+import com.physics.VelocityException;
+
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class Ball {
 	
+	private Velocity velocity;
 	private double positionX;
 	private double positionY;
 	private int windowSizeX;
@@ -13,13 +20,20 @@ public class Ball {
 	private Paint color;
 	private Circle circle;
 	
+	
+	
+	final private static String setVelocityError = "Velocity "
+			+ "must contain 2 double values.";
+	
 
-	public Ball(double positionX, double positionY, 
+	public Ball(Velocity velocity, double positionX, double positionY, 
 					double radius, Paint color, 
-						int windowSizeX, int windowSizeY) {
+						final int windowSizeX, final int windowSizeY) {
 		
+		this.velocity = new Velocity(velocity.getSpeedX(), velocity.getSpeedY());
 		this.positionX = positionX;
 		this.positionY = positionY;
+		this.radius = radius;
 		this.color = color;
 		this.windowSizeX = windowSizeX;
 		this.windowSizeY = windowSizeY;
@@ -36,7 +50,21 @@ public class Ball {
 		this.windowSizeX = ball.getWindowSizeX();
 		this.windowSizeY = ball.getWindowSizeY();
 	}
-
+	
+	
+	public void move(double positionX, double positionY) {
+		this.positionX = positionX;
+		this.positionY = positionY;
+		
+		this.circle.setCenterX(this.positionX);
+		this.circle.setCenterY(this.positionY);
+		
+	}
+	
+	public Velocity getVelocity() {
+		return velocity;
+	}
+	
 
 	public double getPositionX() {
 		return positionX;
@@ -44,11 +72,6 @@ public class Ball {
 	
 	public double getPositionY() {
 		return positionY;
-	}
-
-
-	public void setPositionX(double positionX) {
-		this.positionX = positionX;
 	}
 
 	
@@ -66,24 +89,22 @@ public class Ball {
 	}
 	
 
-
-	public void setPositionY(double positionY) {
-		this.positionY = positionY;
-	}
-
-
 	public int getWindowSizeX() {
 		return windowSizeX;
 	}
 
 
-	public void setWindowSizeX(int windowSizeX) {
-		this.windowSizeX = windowSizeX;
-	}
-
-
 	public int getWindowSizeY() {
 		return windowSizeY;
+	}
+	
+	public void setVelocity(Velocity velocity) { 
+		this.velocity.setSpeedX(velocity.getSpeedX());
+		this.velocity.setSpeedY(velocity.getSpeedY());
+	}
+
+	public void setWindowSizeX(int windowSizeX) {
+		this.windowSizeX = windowSizeX;
 	}
 
 

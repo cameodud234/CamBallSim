@@ -15,18 +15,26 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-
-	final private int widthX = 1000;
-	final private int widthY = 1000;
 	
 	@Override
 	public void start(Stage stage) {
+		
+		final int widthX = 1000;
+		final int widthY = 1000;
+		
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			
+		}
 	  
 		Group root = new Group();
    	  
 		Scene scene = new Scene(root, widthX, widthY, Color.WHITE);
 		
-		ToolBar toolbar = new ToolBar(new Button("New"),new Button("Close"));
+		ToolBar toolbar = new ToolBar();
 		
 		root.getChildren().add(toolbar);
    
@@ -40,8 +48,8 @@ public class Main extends Application {
 			boolean movingLeft = false;
 			boolean movingRight = true;
 			
-			double deltaX = 30;
-			double deltaY = 30;
+			double deltaX = 3;
+			double deltaY = 3;
 			
 			Random rand = new Random();
 			
@@ -54,12 +62,12 @@ public class Main extends Application {
 				
 				circle.setFill(Color.BLUE);
 			  
-				root.getChildren().remove(circle);
+//				root.getChildren().remove(circle);
 			  
 				if(circle.getCenterY() + circle.getRadius() < widthY - 1 && movingDown) {
 					movingUp = false;
 					movingDown = true;
-					pixelY += deltaY + rand.nextInt(-5, 5);
+					pixelY += deltaY + rand.nextInt(0, 5);
 					
 				}
 				else {
@@ -91,6 +99,9 @@ public class Main extends Application {
 					}
 					
 				}
+				
+//				circle.setCenterX(pixelX);
+//				circle.setCenterY(pixelY);
 				
 			  
 				root.getChildren().add(circle);
